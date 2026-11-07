@@ -1,12 +1,11 @@
 # 🔐 Cybersecurity Lab Environment Setup
 
-### Building a Virtual Cybersecurity Lab Using VMware Workstation and Kali Linux
+### Networkwalks Cybersecurity Internship | Batch B084 | Week 1 | PM1
 
-![Cybersecurity](https://img.shields.io/badge/Skill-Cybersecurity-red)
-![Virtualization](https://img.shields.io/badge/Virtualization-VMware-blue)
-![Operating System](https://img.shields.io/badge/OS-Kali%20Linux-557C94)
-![Networking](https://img.shields.io/badge/Network-10.0.0.0%2F24-green)
-![Internship](https://img.shields.io/badge/Internship-Networkwalks-orange)
+![Cybersecurity](https://img.shields.io/badge/Cybersecurity-Lab%20Setup-red)
+![Kali Linux](https://img.shields.io/badge/OS-Kali%20Linux-blue)
+![VMware](https://img.shields.io/badge/Virtualization-VMware-green)
+![Status](https://img.shields.io/badge/Status-Partially%20Complete-yellow)
 
 ---
 
@@ -14,143 +13,143 @@
 
 This project documents the setup and configuration of a virtual cybersecurity laboratory as part of **Week 1, Project Module 1 (PM1)** of my cybersecurity internship at **Networkwalks**.
 
-The lab environment was created using VMware Workstation and Kali Linux to provide a controlled environment for learning cybersecurity concepts, network configuration, Linux administration, and authorized security testing.
+The lab was configured using **VMware Workstation and Kali Linux** to provide a controlled environment for learning cybersecurity concepts, Linux administration, networking, and practical security testing.
 
-The primary objective was to establish a functional virtual machine with internet connectivity, static IP addressing, VMware Tools integration, and file-sharing capabilities.
+The environment includes NAT networking, static IP addressing, internet connectivity, VMware Tools integration, shared-folder access, and a virtual machine snapshot.
 
 ---
 
-## 🎯 Objectives
+## 🎯 Project Objectives
 
-The main objectives of this project were:
+The objectives of this project were:
 
-1. Set up a Kali Linux virtual machine using VMware Workstation.
-2. Configure a NAT network with the subnet `10.0.0.0/24`.
-3. Assign a static IP address of `10.0.0.2/24` to Kali Linux.
+1. Configure a Kali Linux virtual machine.
+2. Set up NAT networking using the subnet `10.0.0.0/24`.
+3. Assign the static IP address `10.0.0.2/24`.
 4. Configure the default gateway and DNS servers.
-5. Verify internet connectivity and DNS resolution.
+5. Verify internet connectivity.
 6. Install and verify VMware Tools.
-7. Enable bidirectional clipboard sharing between Windows and Kali Linux.
-8. Configure a shared folder for transferring files.
-9. Practise basic Linux terminal commands.
-10. Create a virtual machine snapshot for recovery.
+7. Enable bidirectional clipboard integration.
+8. Configure Windows–Kali file sharing.
+9. Practise basic Linux commands.
+10. Create a virtual machine snapshot.
 
 ---
 
-## 🛠️ Tools and Technologies Used
+## 🛠️ Tools and Technologies
 
-| Component | Technology |
+| Component | Configuration |
 |---|---|
 | Host Operating System | Windows |
-| Virtualization Software | VMware Workstation |
+| Virtualization Platform | VMware Workstation |
 | Guest Operating System | Kali Linux |
-| Network Type | NAT |
-| Network Subnet | 10.0.0.0/24 |
-| Static IP Address | 10.0.0.2/24 |
+| Network Mode | NAT |
+| Virtual Network | VMnet8 |
+| Subnet | 10.0.0.0/24 |
+| Static IP | 10.0.0.2/24 |
 | Default Gateway | 10.0.0.1 |
 | DNS Servers | 8.8.8.8, 1.1.1.1 |
-| Guest Integration | open-vm-tools |
+| VMware Integration | open-vm-tools |
 | Shared Folder | Windows Downloads |
-| Network Configuration Tool | NetworkManager |
 
 ---
 
-## ⚙️ Lab Setup and Configuration
+# ⚙️ Lab Setup Procedure
 
-### Step 1: Kali Linux Virtual Machine
+## Step 1: Kali Linux Virtual Machine
 
-An existing Kali Linux virtual machine was used in VMware Workstation.
+An existing Kali Linux virtual machine was configured using VMware Workstation.
 
-The VM was configured to use VMware's NAT networking mode.
+The virtual machine was connected to VMware's NAT network to provide internet connectivity through the Windows host.
 
-This allows the guest operating system to access external networks through the host while remaining on a separate virtual subnet.
+### Screenshot
 
-![Kali Linux Desktop](Kali%20Linux%20Desktop.png)
+![Kali Linux Desktop](./Kali%20Linux%20Desktop.png)
 
 ---
 
-### Step 2: NAT Network Configuration
+## Step 2: NAT Network Configuration
 
-VMware Virtual Network Editor was used to configure the VMnet8 NAT network.
+The VMware Virtual Network Editor was used to configure the VMnet8 network.
 
-**Network Configuration:**
+**Network settings:**
 
-- Virtual Network: VMnet8
 - Network Type: NAT
-- Subnet: `10.0.0.0/24`
+- Virtual Network: VMnet8
+- Subnet IP: `10.0.0.0`
 - Subnet Mask: `255.255.255.0`
 - NAT Gateway: `10.0.0.1`
 
-The NAT gateway was configured to avoid conflicts with Kali Linux's required static IP address.
+The NAT gateway was configured to avoid an IP address conflict with the Kali Linux virtual machine.
 
-![VMware NAT Configuration](03_VMware_NAT_Configuration.png)
+### Screenshot
+
+![VMware NAT Configuration](VMware%20NAT%20Configuration.png)
 
 ---
 
-### Step 3: Static IP Address Configuration
+## Step 3: Static IP Configuration
 
-A static IPv4 address was configured on Kali Linux using NetworkManager.
+A static IP address was assigned to Kali Linux using NetworkManager.
 
-**Configuration:**
+**Network configuration:**
 
 | Parameter | Value |
 |---|---|
 | Interface | eth0 |
-| IPv4 Address | 10.0.0.2 |
+| IP Address | 10.0.0.2 |
 | Subnet Mask | 255.255.255.0 |
-| Default Gateway | 10.0.0.1 |
+| Gateway | 10.0.0.1 |
 | Primary DNS | 8.8.8.8 |
 | Secondary DNS | 1.1.1.1 |
 
-The following command was used to verify the IP address:
+The IP address was verified using:
 
 ```bash
 ip -4 addr show eth0
 ```
 
-The routing configuration was verified using:
+The routing table was checked using:
 
 ```bash
 ip route
 ```
 
-The expected default route was:
+The default route was configured through `10.0.0.1`.
 
-```text
-default via 10.0.0.1 dev eth0
-```
+### Screenshot
 
-![Kali Static IP Configuration](02_Kali_Static_IP.png)
+![Kali Static IP](Kali%20Static%20IP.png)
 
 ---
 
-### Step 4: Internet Connectivity Verification
+## Step 4: Internet Connectivity Verification
 
-Internet connectivity was tested using ICMP ping commands.
+Internet connectivity was tested using the following commands:
 
-**Test 1: External IP connectivity**
+**External IP connectivity:**
 
 ```bash
 ping -c 4 8.8.8.8
 ```
 
-**Test 2: DNS resolution**
+**DNS resolution:**
 
 ```bash
 ping -c 4 google.com
 ```
 
-Both tests completed successfully with 0% packet loss during verification.
+Both tests were successful, confirming internet access and DNS resolution.
 
-This confirmed that Kali Linux could access external networks and resolve domain names.
+### Screenshot
 
-![Internet Connectivity](04_Internet_Connectivity.png)
+![Internet Connectivity](Internet%20Connectivity.png)
 
 ---
 
-### Step 5: VMware Tools Installation
+## Step 5: VMware Tools Installation
 
-VMware Tools integration was configured using the following packages:
+VMware Tools integration was configured using:
 
 - `open-vm-tools`
 - `open-vm-tools-desktop`
@@ -161,62 +160,62 @@ The installed packages were verified using:
 dpkg -l open-vm-tools open-vm-tools-desktop
 ```
 
-Both packages were confirmed to be installed.
+Both packages were successfully installed.
 
-VMware guest integration was used to support clipboard sharing and shared-folder functionality.
+VMware Tools provides guest integration features such as clipboard sharing and shared-folder support.
 
-![VMware Tools Installation](05_VMware_Tools_Installed.png)
+### Screenshot
+
+![VMware Tools Installed](VMware%20Tools%20Installed.png)
 
 ---
 
-### Step 6: Shared Folder Configuration
+## Step 6: Shared Folder Configuration
 
-A shared folder was configured to allow file transfers between Windows and Kali Linux.
+A shared folder was configured between Windows and Kali Linux.
 
-**Host Folder:** Windows Downloads
+**Shared folder details:**
 
-**Shared Folder Name:** `Downloads`
-
-**Kali Mount Location:**
-
-```text
-/mnt/hgfs/Downloads
-```
+- Host Folder: Windows Downloads
+- VMware Share Name: `Downloads`
+- Kali Mount Point: `/mnt/hgfs/Downloads`
 
 The shared folder was mounted using VMware HGFS.
 
-The following command was used to verify access to the test file:
+The following command verified access to the shared test file:
 
 ```bash
 ls -l /mnt/hgfs/Downloads/internship-test.txt
 ```
 
-The test file was successfully accessible from Kali Linux and Windows.
+The test file was accessible from both Windows and Kali Linux.
 
-Automatic mounting was also configured to preserve shared-folder access after restarting the VM.
+Automatic mounting was configured to preserve shared-folder access after restarting Kali.
 
-![Shared Folder Verification](06_Shared_Folder_Verification.png)
+### Screenshot
+
+![Shared Folder Verification](Shared%20Folder%20Verification.png)
 
 ---
 
-### Step 7: Bidirectional Clipboard Integration
+## Step 7: Bidirectional Clipboard Integration
 
-VMware guest isolation settings were configured to enable copy-and-paste functionality.
+VMware guest isolation settings were configured to enable clipboard sharing.
 
-Clipboard sharing was tested in both directions:
+Clipboard functionality was tested in both directions:
 
 - Windows → Kali Linux
 - Kali Linux → Windows
 
 Both tests were successful.
 
-This allows commands and text to be transferred conveniently between the host and guest operating systems.
+This allows text and commands to be copied between the host and guest operating systems.
 
 ---
 
-### Step 8: Basic Linux Commands
+## Step 8: Basic Linux Commands
 
-Basic Linux file and directory operations were practised inside the Kali terminal.
+Basic Linux file and directory management commands were practised.
 
 The following commands were executed:
 
@@ -231,115 +230,117 @@ cat week1.txt
 These commands demonstrate:
 
 - Creating directories
-- Navigating between directories
-- Creating text files
-- Listing files
-- Displaying file contents
+- Navigating directories
+- Creating files
+- Listing directory contents
+- Reading text files
 
-![Basic Linux Commands](07_Basic_Linux_Commands.png)
+### Screenshot
+
+![Basic Linux Commands](Basic%20Linux%20Commands.png)
 
 ---
 
-### Step 9: Virtual Machine Snapshot
+## Step 9: Virtual Machine Snapshot
 
 A VMware snapshot was created after completing the main lab configuration.
 
-**Snapshot Name:**
+**Snapshot name:**
 
 `Week 1 - Cybersecurity Lab Setup`
 
-The snapshot provides a recovery checkpoint that can be used to restore the virtual machine to its saved state if future configuration changes cause problems.
+The snapshot provides a recovery checkpoint that can be used to restore the virtual machine to its saved state.
 
-![VMware Snapshot](08_VMware_Snapshot.png)
+### Screenshot
+
+![VMware Snapshot](VMware%20Snapshot.png)
 
 ---
 
-## 🧪 Verification Results
+# 🧪 Verification Results
 
-| Test | Result |
+| Test | Status |
 |---|---|
-| Kali Linux VM boots successfully | PASS |
-| Static IP configuration | PASS |
-| NAT network configuration | PASS |
-| Internet connectivity | PASS |
-| DNS resolution | PASS |
-| VMware Tools installation | PASS |
-| Windows → Kali clipboard | PASS |
-| Kali → Windows clipboard | PASS |
-| Shared-folder file transfer | PASS |
-| Basic Linux commands | PASS |
-| VMware snapshot creation | PASS |
-| Drag-and-drop file transfer | NOT WORKING |
+| Kali Linux VM | PASS |
+| NAT Configuration | PASS |
+| Static IP Configuration | PASS |
+| Internet Connectivity | PASS |
+| DNS Resolution | PASS |
+| VMware Tools Installation | PASS |
+| Bidirectional Clipboard | PASS |
+| Shared Folder File Transfer | PASS |
+| Basic Linux Commands | PASS |
+| VM Snapshot | PASS |
+| Drag-and-Drop File Transfer | NOT WORKING |
 
 ---
 
-## ⚠️ Challenges Encountered
+# ⚠️ Challenges Encountered
 
-During the setup process, several configuration issues were encountered.
+### 1. NAT Gateway Conflict
 
-**1. NAT Gateway Conflict**
+The initial NAT gateway configuration conflicted with Kali Linux's required static IP address.
 
-The initial NAT gateway configuration conflicted with the required Kali Linux static IP address.
+**Resolution:** The gateway was configured as `10.0.0.1`.
 
-This was resolved by configuring the NAT gateway as `10.0.0.1`.
+### 2. Internet Connectivity
 
-**2. Internet Connectivity Issues**
+Initial internet connectivity tests failed due to network configuration conflicts.
 
-Initial connectivity tests failed due to network configuration conflicts.
+**Resolution:** The VMware virtual network settings were adjusted, restoring internet connectivity.
 
-After adjusting the VMware virtual network settings, internet connectivity and DNS resolution were successfully restored.
+### 3. Shared Folder Mounting
 
-**3. Shared Folder Mounting**
+The Windows Downloads folder was initially inaccessible from Kali Linux.
 
-The shared folder was initially not accessible through the expected mount directory.
+**Resolution:** VMware HGFS was configured, and automatic mounting was enabled.
 
-VMware HGFS was configured, and automatic mounting was enabled to provide access after restarting Kali Linux.
+### 4. Drag-and-Drop Integration
 
-**4. Drag-and-Drop Integration**
+VMware drag-and-drop file transfer remained unavailable after troubleshooting.
 
-VMware drag-and-drop file transfer remained unavailable despite troubleshooting.
-
-However, bidirectional clipboard sharing and the Windows–Kali shared folder were successfully configured, providing an alternative method for transferring files.
+However, the shared folder and bidirectional clipboard were successfully configured, providing alternative file-transfer functionality.
 
 ---
 
-## 📚 Learning Outcomes
+# 📚 Learning Outcomes
 
-Through this project, I gained practical experience in:
+Through this project, I gained practical experience with:
 
-- Virtual machine management using VMware Workstation.
-- NAT networking and IPv4 addressing.
-- Static IP, gateway, and DNS configuration.
-- Linux network troubleshooting.
-- VMware guest integration.
-- Shared-folder configuration.
-- Basic Linux command-line operations.
-- Virtual machine snapshots and recovery.
-
-This project provided a foundation for future cybersecurity internship activities and authorized security testing in a controlled lab environment.
+- VMware Workstation virtualization
+- Kali Linux administration
+- NAT networking
+- IPv4 addressing
+- Static IP configuration
+- Gateway and DNS configuration
+- Network troubleshooting
+- VMware Tools integration
+- Windows–Linux file sharing
+- Basic Linux commands
+- Virtual machine snapshots
 
 ---
 
-## 👨‍💻 Internship Information
+# 👨‍💻 Internship Details
 
 **Organization:** Networkwalks  
 **Batch:** B084  
 **Week:** 1  
 **Project Module:** PM1  
-**Project:** Cybersecurity Lab Environment Setup  
+**Project Title:** Cybersecurity Lab Environment Setup  
 **Virtualization Platform:** VMware Workstation  
-**Guest OS:** Kali Linux
+**Guest Operating System:** Kali Linux
 
 ---
 
-## 📌 Conclusion
+# 🏁 Conclusion
 
 The Week 1 cybersecurity lab environment was configured using VMware Workstation and Kali Linux.
 
-The completed setup includes NAT networking, static IP addressing, internet connectivity, VMware Tools, bidirectional clipboard integration, shared-folder access, and a virtual machine snapshot.
+The setup includes NAT networking, static IP addressing, internet connectivity, VMware Tools, bidirectional clipboard sharing, shared-folder access, and a virtual machine snapshot.
 
-The environment is ready for further learning and practical cybersecurity exercises, with drag-and-drop integration remaining an outstanding limitation.
+The environment provides a foundation for future cybersecurity learning and practical exercises. Drag-and-drop integration remains an outstanding limitation.
 
 ---
 
-**Cybersecurity Internship | Networkwalks | Batch B084**
+**Networkwalks Cybersecurity Internship | Batch B084 | Week 1**
