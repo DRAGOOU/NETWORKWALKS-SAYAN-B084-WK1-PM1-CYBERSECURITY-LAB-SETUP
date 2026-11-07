@@ -65,7 +65,7 @@ The VM was configured to use VMware's NAT networking mode.
 
 This allows the guest operating system to access external networks through the host while remaining on a separate virtual subnet.
 
-![Kali Linux Desktop](01_Kali_Linux_Desktop.png)
+![Kali Linux Desktop](Kali%20Linux%20Desktop.png)
 
 ---
 
